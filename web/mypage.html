@@ -17,13 +17,13 @@
   <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/ncmb.min.js" charset="utf-8"></script>
   <script>
-    (function() {
+    $(function() {
       var apikey = "655099e79b56b4ca5a1429d184acd69f480738197c9ad755b5658a6f8db0571a";
-      var clientkey = "071d9fc038d795a9895b96545df65f43fe4b32781181d45649b1f6d39c717555"
+      var clientkey = "071d9fc038d795a9895b96545df65f43fe4b32781181d45649b1f6d39c717555";
       var ncmb = new NCMB(apikey, clientkey);
       var currentUser = ncmb.User.getCurrentUser();
       if (currentUser) {
-        // alert("ログイン中のユーザー: " + currentUser.get("userName"));
+        alert("ログイン中のユーザー: " + currentUser.get("userName"));
       } else {
         alert("ログインしてください！");
         location.href = "./index.html";
@@ -102,12 +102,13 @@
   <script>
     $(function() {
       var apikey = "655099e79b56b4ca5a1429d184acd69f480738197c9ad755b5658a6f8db0571a";
-      var clientkey = "071d9fc038d795a9895b96545df65f43fe4b32781181d45649b1f6d39c717555"
+      var clientkey = "071d9fc038d795a9895b96545df65f43fe4b32781181d45649b1f6d39c717555";
       var ncmb = new NCMB(apikey, clientkey);
 
       $("button").click(function(e) {
         e.preventDefault();
-        ncmb.User.logout()
+        var currentUser = ncmb.User.getCurrentUser();
+        currentUser.logout()
           .then(function(data) {
             // ログイン後処理
             alert("ログアウトしました！");
@@ -115,7 +116,7 @@
           })
           .catch(function(err) {
             // エラー処理
-            alert("何かのエラー");
+            alert(err);
           });
       });
     });
