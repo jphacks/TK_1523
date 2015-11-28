@@ -7,7 +7,6 @@ $(function() {
     ncmb = new NCMB(apikey, clientkey);
     var currentUser = ncmb.User.getCurrentUser();
     
-    console.log(currentUser);
     if (currentUser) {
         console.log("ログイン中のユーザー: " + currentUser.get("userName"));
     } else {
@@ -22,31 +21,20 @@ $(document).ready(function(){
     var shop = new Shop();
 
     // ショップ追加処理
-    $("#addshop").click(function(e){
+    // XXX:submitに変更
+    $("form").submit(function(e){
         e.preventDefault();
 	$("#addshop").prop('disabled', true);
-	
 
-	var shop_name = $("#shop_name").val();
+	//var shop_name = $("#shop_name").val();
 	//var shop_addr = $("#shop_addr").val();
+	var shop_msg = $("#shop_msg").val();
 
-	shop.set("userObjectId", currentUser.objectId)
-	    .set("shopName", shop_name)
-	    //.set("geoPoint ", shop_addr)
-	    .save()
-	    .then(function(res){
-		$("#shop_name").val("");
-		$("#shop_addr").val("");
-		
-		alert("保存完了");
-		location.href = "./mypage.html";
-	    })
-	    .catch(function(err){
-		console.log(err);
-
-		alert("error");
-		$("#addshop").prop('disabled', false);
-	    });
+	codeAddress(currentUser.address, function(geo){
+	    //regShop(shop_name, shop_addr, geo);
+	    regCoupon(geo, shop_msg);
+	});
+	
     });
     
     // ログアウト処理
@@ -65,4 +53,104 @@ $(document).ready(function(){
             });
     });
 
+    /**
+     * クーポン登録
+     *
+     * @param {string} name 店舗名
+     * @param {string} addr 住所
+     * @param {geoObject} geo 住所ジオポイント
+     */
+    var regCoupon = function(geo, msg){
+	console.log(geo);
+	console.log(msg);
+	
+	shop.set("userObjectId", currentUser.objectId)
+	    .set("geoPoint", geo)
+	    .set("message", msg)
+	    .save()
+	    .then(function(res){
+		$("#shop_name").val("");
+		$("#shop_addr").val("");
+		
+		alert("保存完了");
+		location.href = "./mypage.html";
+	    })
+	    .catch(function(err){
+		console.log(err);
+
+		alert("error");
+		$("#addshop").prop('disabled', false);
+	    });
+    };
+    
+    /**
+     * ショップ登録
+     *
+     * @param {string} name 店舗名
+     * @param {string} addr 住所
+     * @param {geoObject} geo 住所ジオポイント
+     */
+    var regShop = function(name, addr, geo){
+	console.log(name);
+	console.log(addr);
+	console.log(geo);
+	
+	shop.set("userObjectId", currentUser.objectId)
+	    .set("geoPoint", geo)
+	    .set("shopName", name)
+	    .set("address", addr)
+	    .save()
+	    .then(function(res){
+		$("#shop_name").val("");
+		$("#shop_addr").val("");
+		
+		alert("保存完了");
+		location.href = "./mypage.html";
+	    })
+	    .catch(function(err){
+		console.log(err);
+
+		alert("error");
+		$("#addshop").prop('disabled', false);
+	    });
+    };
+
+    
+
+    var codeAddress = function(address, func){
+	var geocoder = new google.maps.Geocoder();
+	var latitude = "",
+	    longitude = "";
+	var resflg = false;
+	
+	if (geocoder) {
+	    geocoder.geocode({
+		'address': address,
+		'region': 'jp'
+	    }, function(results, status) {
+		if (status == google.maps.GeocoderStatus.OK) {
+
+		    for (var r in results) {
+			if (results[r].geometry) {
+			    var latlng = results[r].geometry.location;
+
+			    latitude = latlng.lat();
+			    longitude = latlng.lng();
+
+			    var geo = new ncmb.GeoPoint(latitude, longitude);
+			    
+			    func(geo);
+			    break;
+			} else {
+			    alert("Geocode 取得に失敗しました reason: " + status);
+			}
+		    };
+		}
+	    });
+	}
+	return new ncmb.GeoPoint(latitude, longitude);
+    };
+
+
 });
+
