@@ -65,9 +65,12 @@
           .then(function() {
             // 登録後処理
             alert("ユーザ登録しました！");
+            location.href = "./mypage.html";
           })
           .catch(function(err) {
             // エラー処理
+            alert(err);
+            location.href = "./signup.html";
           });
 
       });

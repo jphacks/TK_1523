@@ -23,11 +23,11 @@
       <form action="" class="form-group">
         <label for="" class="col-sm-2">username </label>
         <div class="col-sm-10">
-          <input name="" type="text" value="" placeholder="username" />
+          <input name="" type="text" id="username" value="" placeholder="username" />
         </div>
         <label for="" class="col-sm-2">password </label>
         <div class="col-sm-10">
-          <input name="" type="text" value="" placeholder="password" />
+          <input name="" type="password" id="password" value="" placeholder="password" />
         </div>
         <div class="col-sm-12">
           <button class="btn btn-primary">ログイン</button>
@@ -47,20 +47,17 @@
 
       $("button").click(function(e) {
         e.preventDefault();
-        var user = new ncmb.User();
-        user.set("userName", $("#username").val());
-        user.set("password", $("#password").val());
-
-        // 新規登録
-        user.signUpByAccount()
-          .then(function() {
-            // 登録後処理
-            alert("ユーザ登録しました！");
+        ncmb.User.login($("#username").val(), $("#password").val())
+          .then(function(data){
+            // ログイン後処理
+            alert("ログイン成功！");
+            location.href = "./mypage.html";
           })
-          .catch(function(err) {
+          .catch(function(err){
             // エラー処理
+            alert("ログイン失敗！");
+            location.href = "./login.html";
           });
-
       });
 
     });
