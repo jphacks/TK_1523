@@ -1,44 +1,70 @@
 <!DOCTYPE html>
 <html lang="ja">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>ログイン</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>ログイン</title>
 
-    <!--[if lt IE 9]>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+
+  <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-  </head>
-  <body>
-    <div class="container">
+</head>
+
+<body>
+  <div class="container">
     <h1>ログイン</h1>
 
-      <div class="row">
-	<form action="" class="form-group">
-	  <label for="" class="col-sm-2">id </label>
-	  <div class="col-sm-10">
-	    <input name="" type="text" value="" placeholder="id"/>
-	  </div>
-	  <label for="" class="col-sm-2">password </label>
-	  <div class="col-sm-10">
-	    <input name="" type="text" value="" placeholder="password"/>
-	  </div>
-
-	  <div class="col-sm-12">
-	    
-	    <a class="btn btn-primary" href="./mypage.html">ログイン</a>
-	    
-	    <!-- <input name="" type="submit" value="登録" class="btn"/> -->
-	  </div>
-	</form>
-      </div>
+    <div class="row">
+      <form action="" class="form-group">
+        <label for="" class="col-sm-2">username </label>
+        <div class="col-sm-10">
+          <input name="" type="text" value="" placeholder="username" />
+        </div>
+        <label for="" class="col-sm-2">password </label>
+        <div class="col-sm-10">
+          <input name="" type="text" value="" placeholder="password" />
+        </div>
+        <div class="col-sm-12">
+          <button class="btn btn-primary">ログイン</button>
+        </div>
+      </form>
     </div>
+  </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-  </body>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/ncmb.min.js" charset="utf-8"></script>
+  <script>
+    $(function() {
+      var apikey = "655099e79b56b4ca5a1429d184acd69f480738197c9ad755b5658a6f8db0571a";
+      var clientkey = "071d9fc038d795a9895b96545df65f43fe4b32781181d45649b1f6d39c717555"
+      var ncmb = new NCMB(apikey, clientkey);
+
+      $("button").click(function(e) {
+        e.preventDefault();
+        var user = new ncmb.User();
+        user.set("userName", $("#username").val());
+        user.set("password", $("#password").val());
+
+        // 新規登録
+        user.signUpByAccount()
+          .then(function() {
+            // 登録後処理
+            alert("ユーザ登録しました！");
+          })
+          .catch(function(err) {
+            // エラー処理
+          });
+
+      });
+
+    });
+  </script>
+</body>
+
 </html>
