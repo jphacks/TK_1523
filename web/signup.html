@@ -64,7 +64,17 @@
           .then(function() {
             // 登録後処理
             alert("ユーザ登録しました！");
-            location.href = "./mypage.html";
+            ncmb.User.login($("#username").val(), $("#password").val())
+              .then(function(data) {
+                // ログイン後処理
+                alert("ログイン成功！");
+                location.href = "./mypage.html";
+              })
+              .catch(function(err) {
+                // エラー処理
+                alert("ログイン失敗！");
+                location.href = "./login.html";
+              });
           })
           .catch(function(err) {
             // エラー処理

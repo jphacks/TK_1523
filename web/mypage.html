@@ -17,16 +17,18 @@
   <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/ncmb.min.js" charset="utf-8"></script>
   <script>
+    (function() {
       var apikey = "655099e79b56b4ca5a1429d184acd69f480738197c9ad755b5658a6f8db0571a";
       var clientkey = "071d9fc038d795a9895b96545df65f43fe4b32781181d45649b1f6d39c717555"
       var ncmb = new NCMB(apikey, clientkey);
       var currentUser = ncmb.User.getCurrentUser();
       if (currentUser) {
-        alert("ログイン中のユーザー: " + currentUser.get("userName"));
+        // alert("ログイン中のユーザー: " + currentUser.get("userName"));
       } else {
-        alert("未ログインまたは取得に失敗");
+        alert("ログインしてください！");
         location.href = "./index.html";
       }
+    })();
   </script>
 </head>
 
@@ -48,7 +50,9 @@
         <li style="margin: 2px 0;"><a class="btn btn-default" href="#map3" data-toggle="tab">マップ3</a></li>
         <li style="margin: 2px 0;"><a class="btn btn-default" href="#coupons" data-toggle="tab">クーポン管理画面</a></li>
         <li style="margin: 2px 0;"><a class="btn btn-default" href="#setting" data-toggle="tab">ユーザー管理</a></li>
-        <li style="margin: 2px 0;"><button class="btn btn-warning" id="logout" data-toggle="tab">ログアウト</a></li>
+        <li style="margin: 2px 0;">
+          <button class="btn btn-warning" id="logout" data-toggle="tab">ログアウト</a>
+        </li>
       </ul>
     </div>
     <div class="tab-content">
@@ -97,6 +101,10 @@
   <!-- .container -->
   <script>
     $(function() {
+      var apikey = "655099e79b56b4ca5a1429d184acd69f480738197c9ad755b5658a6f8db0571a";
+      var clientkey = "071d9fc038d795a9895b96545df65f43fe4b32781181d45649b1f6d39c717555"
+      var ncmb = new NCMB(apikey, clientkey);
+
       $("button").click(function(e) {
         e.preventDefault();
         ncmb.User.logout()

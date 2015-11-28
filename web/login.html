@@ -17,14 +17,15 @@
   <script src="js/bootstrap.min.js"></script>
   <script type="text/javascript" src="js/ncmb.min.js" charset="utf-8"></script>
   <script>
+    (function() {
       var apikey = "655099e79b56b4ca5a1429d184acd69f480738197c9ad755b5658a6f8db0571a";
       var clientkey = "071d9fc038d795a9895b96545df65f43fe4b32781181d45649b1f6d39c717555"
       var ncmb = new NCMB(apikey, clientkey);
       var currentUser = ncmb.User.getCurrentUser();
       if (currentUser) {
-        alert("ログイン中のユーザー: " + currentUser.get("userName"));
         location.href = "./mypage.html";
       }
+    })();
   </script>
 </head>
 
@@ -50,11 +51,10 @@
   </div>
 
   <script>
+    var apikey = "655099e79b56b4ca5a1429d184acd69f480738197c9ad755b5658a6f8db0571a";
+    var clientkey = "071d9fc038d795a9895b96545df65f43fe4b32781181d45649b1f6d39c717555"
+    var ncmb = new NCMB(apikey, clientkey);
     $(function() {
-      var apikey = "655099e79b56b4ca5a1429d184acd69f480738197c9ad755b5658a6f8db0571a";
-      var clientkey = "071d9fc038d795a9895b96545df65f43fe4b32781181d45649b1f6d39c717555"
-      var ncmb = new NCMB(apikey, clientkey);
-
       $("button").click(function(e) {
         e.preventDefault();
         ncmb.User.login($("#username").val(), $("#password").val())
