@@ -12,7 +12,8 @@ var app = express();
 app.use(express.static(path.join(__dirname, 'public_html')));
 
 var storage = multer.diskStorage({
-    destination: './uploads/',
+    //destination: './uploads/',
+    destination: './public_html/uploads/',
     filename: function (req, file, cb) {
 	crypto.pseudoRandomBytes(16, function (err, raw) {
 	    if (err) return cb(err);

@@ -45,6 +45,10 @@ $(document).ready(function(){
             });
     });
 
+
+    
+    
+
     /**
      * クーポン登録
      *
@@ -73,7 +77,7 @@ $(document).ready(function(){
 		alert("error");
 		$("#addshop").prop('disabled', false);
 	    });
-    };
+    };    
     
     /**
      * ショップ登録
@@ -106,10 +110,6 @@ $(document).ready(function(){
 		$("#addshop").prop('disabled', false);
 	    });
     };
-
-    
-
-
 });
 
 
