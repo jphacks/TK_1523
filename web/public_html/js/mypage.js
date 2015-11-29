@@ -25,8 +25,24 @@ $(function() {
 
 $(document).ready(function(){
     var currentUser = ncmb.User.getCurrentUser();
+    
     var Coupon = ncmb.DataStore("coupon");
-    var coupon = new Shop();
+
+    Coupon.equalTo("objectId", "EofbvjxgBnfB0DFB")
+    //Coupon.equalTo("userObjectId", currentUser.objectId)
+	//.oder("createDate")
+	.fetchAll()
+	.then(function(results){
+	    console.log(results);
+	    for (var i = 0; i < results.length; i++) {
+		var object = results[i];
+		console.log(object.score + " - " + object.get("playerName"));
+	    }
+	})
+        .catch(function(err){
+	    console.log(err);
+	});;
+    
     
     // ログアウト処理
     $("#logout").click(function(e) {
@@ -44,6 +60,37 @@ $(document).ready(function(){
             });
     });
 
-    //$("#")
 
 });
+
+var codeAddress = function(address, func){
+    var geocoder = new google.maps.Geocoder();
+    var latitude = "",
+	longitude = "";
+    var resflg = false;
+    
+    if (geocoder) {
+	geocoder.geocode({
+	    'address': address,
+	    'region': 'jp'
+	}, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+
+		for (var r in results) {
+		    if (results[r].geometry) {
+			var latlng = results[r].geometry.location;
+
+			latitude = latlng.lat();
+			longitude = latlng.lng();
+			console.log(latitude);
+
+			func(latitude, longitude);
+			break;
+		    } else {
+			alert("Geocode 取得に失敗しました reason: " + status);
+		    }
+		};
+	    }
+	});
+    }
+};
