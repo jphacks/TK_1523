@@ -23,38 +23,36 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
-
-app.post('/upload', upload.single('avatar'), function (req, res, next) {
-    console.log(req.body.message);
-    console.log(req.file.path);
-
-    fs.unlink(req.file.path);
-
-    res.send("aaa").end();
-    return;
-
-    ncmb.File.upload(req.file.filename, req.file.path)
-        .then(function(data){
-
-	    var Coupon = ncmb.DataStore("coupon");
-	    var coupon = new Coupon();
-
-	    coupon.set("message", req.body.message)
-	        .set("imageName", req.file.filename)
-	        .save()
-	        .then(function(gameScore){
-	    
-		    fs.unlink(req.file.path);
-		    res.send("success");
-		})
-	        .catch(function(err){
-		    // エラー処理
-		    res.send("failed.");
-		});
+app.get('/test', function(req, res){
+    ncmb.File.download("0e9033acd23ef5daa208b80db8ea332a.jpg")
+        .then(function(fileData){
+	    // ファイル取得後処理
+	    console.log(fileData);
+	    res.send("<img src='" + fileData + "'/>");
 	})
         .catch(function(err){
+	    // エラー処理
+	    res.send(err);
+	});
+});
+
+
+app.post('/upload', upload.single('avatar'), function (req, res, next) {
+    
+    var Coupon = ncmb.DataStore("coupon");
+    var coupon = new Coupon();
+    
+    coupon.set("message", req.body.message)
+	.set("imageName", req.file.filename)
+	.save()
+	.then(function(gameScore){
+	    res.redirect('./mypage.html');
+	    //res.send("success");
+	})
+	.catch(function(err){
+	    // エラー処理
 	    fs.unlink(req.file.path);
-	    res.send("failed");
+	    res.send("failed.");
 	});
 });
 
@@ -65,42 +63,3 @@ var server = app.listen(3000, function () {
 
     console.log('Example app listening at http://%s:%s', host, port);
 });
-
-
-
-//app.use(express.static(path.join(__dirname, 'public_html')));
-
-//console.dir(multer);
-
-//app.use(multer({ dest: 'uploads/' }));
-// var limits = { fileSize: 10 * 1024 * 1024 };
-// var storage = multer.diskStorage({});
-// var upload = multer({ limits: limits, storage: storage });
-
-// app.get('/hoge', function (req, res) {
-//     res.send('Hello World!');
-// });
-
-
-// app.post('/upload', upload.single('photo'), function(req, res){
-//     console.log(req.body);
-//     console.log(req.files);
-    
-//     res.status(204).end();
-// });
-
-// app.post('/upload',  [ multer({ dest: './uploads/'}), function(req, res){
-//     console.log(req.body); // form fields
-//     console.log(req.files); // form files
-    
-//     res.send("hoge");
-//     res.status(204).end();
-// }]);
-
-
-// var server = app.listen(3000, function () {
-//     var host = server.address().address;
-//     var port = server.address().port;
-
-//     console.log('Example app listening at http://%s:%s', host, port);
-// });
