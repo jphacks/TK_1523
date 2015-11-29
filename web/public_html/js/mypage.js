@@ -14,7 +14,13 @@ $(function() {
         location.href = "./index.html";
     }
 
-    $("#userObjectId").val(currentUser.objectId);
+
+    codeAddress(currentUser.address, function(lat, lon){
+	$("#userObjectId").val(currentUser.objectId);
+	$("#geoLat").val(lat);o
+	$("#geoLon").val(lon);
+    });
+    
 //    set("userObjectId", currentUser.objectId)
 });
 
@@ -22,23 +28,6 @@ $(document).ready(function(){
     var currentUser = ncmb.User.getCurrentUser();
     var Shop = ncmb.DataStore("shop");
     var shop = new Shop();
-
-    // ショップ追加処理
-    // XXX:submitに変更
-    // $("form#shop_form").submit(function(e){
-    //     e.preventDefault();
-    // 	$("#addshop").prop('disabled', true);
-
-    // 	//var shop_name = $("#shop_name").val();
-    // 	//var shop_addr = $("#shop_addr").val();
-    // 	var shop_msg = $("#shop_msg").val();
-
-    // 	codeAddress(currentUser.address, function(geo){
-    // 	    //regShop(shop_name, shop_addr, geo);
-    // 	    regCoupon(geo, shop_msg);
-    // 	});
-	
-    // });
     
     // ログアウト処理
     $("#logout").click(function(e) {
@@ -120,40 +109,40 @@ $(document).ready(function(){
 
     
 
-    var codeAddress = function(address, func){
-	var geocoder = new google.maps.Geocoder();
-	var latitude = "",
-	    longitude = "";
-	var resflg = false;
-	
-	if (geocoder) {
-	    geocoder.geocode({
-		'address': address,
-		'region': 'jp'
-	    }, function(results, status) {
-		if (status == google.maps.GeocoderStatus.OK) {
-
-		    for (var r in results) {
-			if (results[r].geometry) {
-			    var latlng = results[r].geometry.location;
-
-			    latitude = latlng.lat();
-			    longitude = latlng.lng();
-
-			    var geo = new ncmb.GeoPoint(latitude, longitude);
-			    
-			    func(geo);
-			    break;
-			} else {
-			    alert("Geocode 取得に失敗しました reason: " + status);
-			}
-		    };
-		}
-	    });
-	}
-	return new ncmb.GeoPoint(latitude, longitude);
-    };
-
 
 });
 
+
+var codeAddress = function(address, func){
+    var geocoder = new google.maps.Geocoder();
+    var latitude = "",
+	longitude = "";
+    var resflg = false;
+    
+    if (geocoder) {
+	geocoder.geocode({
+	    'address': address,
+	    'region': 'jp'
+	}, function(results, status) {
+	    if (status == google.maps.GeocoderStatus.OK) {
+
+		for (var r in results) {
+		    if (results[r].geometry) {
+			var latlng = results[r].geometry.location;
+
+			latitude = latlng.lat();
+			longitude = latlng.lng();
+			console.log(latitude);
+
+			//var geo = new ncmb.GeoPoint(latitude, longitude);
+			
+			func(latitude, longitude);
+			break;
+		    } else {
+			alert("Geocode 取得に失敗しました reason: " + status);
+		    }
+		};
+	    }
+	});
+    }
+};
