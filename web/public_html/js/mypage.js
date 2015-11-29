@@ -25,24 +25,52 @@ $(function() {
 
 $(document).ready(function(){
     var currentUser = ncmb.User.getCurrentUser();
+
+    $.ajax({
+    	url: "/coupons",
+    	type:'GET',
+    	dataType: 'json',
+    	data : {userObjectId : currentUser.objectId},
+    	timeout:10000,
+	
+    	success: function(data) {
+
+	    for(var i=0;i<data.length;i++){
+		console.log(data[i]);
+
+		$("#coupons").prepend('<div class="col-md-3 col-sm-6 col-xs-12"><table class="table table-bordered"><tr><td style="text-align:center;"><img alt="" style="width:100%;height:auto;" src="http://52.69.224.97:3000//uploads/'+data[i].imageName+'"/></td></tr><tr><td>'+data[i].message+'</td></tr><tr><td>'+currentUser.address+'</td></tr><tr><td><button class="btn btn-danger">削除</button></td></tr></table></div>');
+	    }
+	    
+	    // console.log(data);
+	    // for(var i=0;i<data.lenth;i++){
+	    // 	console.log(data[i]);
+	    // }
+	    
+    	},
+    	error: function(XMLHttpRequest, textStatus, errorThrown) {
+    	    alert("error");
+    	}
+    });
     
+    // $.get( "/coupons?userObjectId="+currentUser.objectId, function( data ) {
+    // 	console.log(data);
+    // });
+    
+
+    /*
     var Coupon = ncmb.DataStore("coupon");
 
-    Coupon.equalTo("objectId", "EofbvjxgBnfB0DFB")
-    //Coupon.equalTo("userObjectId", currentUser.objectId)
-	//.oder("createDate")
+//    Coupon.equalTo("objectId", "EofbvjxgBnfB0DFB")
+    Coupon.equalTo("userObjectId", currentUser.objectId)
+//	.oder("createDate")
 	.fetchAll()
 	.then(function(results){
 	    console.log(results);
-	    for (var i = 0; i < results.length; i++) {
-		var object = results[i];
-		console.log(object.score + " - " + object.get("playerName"));
-	    }
 	})
         .catch(function(err){
 	    console.log(err);
 	});;
-    
+    */
     
     // ログアウト処理
     $("#logout").click(function(e) {

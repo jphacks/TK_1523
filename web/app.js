@@ -24,17 +24,40 @@ var storage = multer.diskStorage({
 });
 var upload = multer({ storage: storage });
 
-app.get('/test', function(req, res){
-    ncmb.File.download("0e9033acd23ef5daa208b80db8ea332a.jpg")
-        .then(function(fileData){
-	    // ファイル取得後処理
-	    console.log(fileData);
-	    res.send("<img src='" + fileData + "'/>");
+app.get('/coupons', function(req, res){
+    
+    console.log("======================");
+    //console.log(req.param("userObjectId"));
+    console.log(req.query.userObjectId);
+    
+    var Coupon = ncmb.DataStore("coupon");
+    
+
+    console.log(req.body);
+
+    Coupon.equalTo("userObjectId", req.query.userObjectId)
+	.fetchAll()
+	.then(function(results){
+	    res.set('Content-Type', 'application/javascript');
+	    res.send(results);
+	    res.end();
 	})
         .catch(function(err){
-	    // エラー処理
-	    res.send(err);
+	    console.log(err);
+	    res.send("");
 	});
+
+    
+    // ncmb.File.download("0e9033acd23ef5daa208b80db8ea332a.jpg")
+    //     .then(function(fileData){
+    // 	    // ファイル取得後処理
+    // 	    console.log(fileData);
+    // 	    res.send("<img src='" + fileData + "'/>");
+    // 	})
+    //     .catch(function(err){
+    // 	    // エラー処理
+    // 	    res.send(err);
+    // 	});
 });
 
 
@@ -47,13 +70,12 @@ app.post('/upload', upload.single('avatar'), function (req, res, next) {
 
     
     var geo = new ncmb.GeoPoint(parseFloat(req.body.geoLat), parseFloat(req.body.geoLon));
-    console.log(geo);
 
     coupon.set("message", req.body.message)
 	.set("geoPoint", geo)
 	.set("userObjectId", req.body.userObjectId)
 	.set("imageName", req.file.filename)
-	.set("ikeCount", 0)
+	.set("likeCount", 0)
 	.save()
 	.then(function(gameScore){
 	    res.redirect('./mypage.html');
