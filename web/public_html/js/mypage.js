@@ -13,6 +13,9 @@ $(function() {
         alert("ログインしてください！");
         location.href = "./index.html";
     }
+
+    $("#userObjectId").val(currentUser.objectId);
+//    set("userObjectId", currentUser.objectId)
 });
 
 $(document).ready(function(){
@@ -22,20 +25,20 @@ $(document).ready(function(){
 
     // ショップ追加処理
     // XXX:submitに変更
-    $("form#shop_form").submit(function(e){
-        e.preventDefault();
-	$("#addshop").prop('disabled', true);
+    // $("form#shop_form").submit(function(e){
+    //     e.preventDefault();
+    // 	$("#addshop").prop('disabled', true);
 
-	//var shop_name = $("#shop_name").val();
-	//var shop_addr = $("#shop_addr").val();
-	var shop_msg = $("#shop_msg").val();
+    // 	//var shop_name = $("#shop_name").val();
+    // 	//var shop_addr = $("#shop_addr").val();
+    // 	var shop_msg = $("#shop_msg").val();
 
-	codeAddress(currentUser.address, function(geo){
-	    //regShop(shop_name, shop_addr, geo);
-	    regCoupon(geo, shop_msg);
-	});
+    // 	codeAddress(currentUser.address, function(geo){
+    // 	    //regShop(shop_name, shop_addr, geo);
+    // 	    regCoupon(geo, shop_msg);
+    // 	});
 	
-    });
+    // });
     
     // ログアウト処理
     $("#logout").click(function(e) {

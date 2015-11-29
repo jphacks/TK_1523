@@ -38,11 +38,14 @@ app.get('/test', function(req, res){
 
 
 app.post('/upload', upload.single('avatar'), function (req, res, next) {
+
+    //console.log(req.body);
     
     var Coupon = ncmb.DataStore("coupon");
     var coupon = new Coupon();
     
     coupon.set("message", req.body.message)
+	.set("userObjectId", req.body.userObjectId)
 	.set("imageName", req.file.filename)
 	.save()
 	.then(function(gameScore){
