@@ -53,6 +53,7 @@ app.post('/upload', upload.single('avatar'), function (req, res, next) {
 	.set("geoPoint", geo)
 	.set("userObjectId", req.body.userObjectId)
 	.set("imageName", req.file.filename)
+	.set("ikeCount", 0)
 	.save()
 	.then(function(gameScore){
 	    res.redirect('./mypage.html');
