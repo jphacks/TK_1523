@@ -1,141 +1,162 @@
 <!DOCTYPE html>
 <html lang="ja">
 
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>トップページ</title>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>トップページ</title>
 
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-
-    <!--[if lt IE 9]>
+  <link href="css/bootstrap.min.css" rel="stylesheet">
+  <link href="css/app.css" rel="stylesheet">
+  <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
     <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKccagkCD8o_PeQ-ALyV_pwmUc_8RF-cE&sensor=false" type="text/javascript"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script type="text/javascript" src="js/ncmb.min.js" charset="utf-8"></script>
-    <script type="text/javascript" src="js/mypage.js" charset="utf-8"></script>
-    
-    <script>
-      //
-    </script>
-  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDKccagkCD8o_PeQ-ALyV_pwmUc_8RF-cE&sensor=false" type="text/javascript"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="js/ncmb.min.js" charset="utf-8"></script>
+  <script type="text/javascript" src="js/mypage.js" charset="utf-8"></script>
 
-  <body>
-    <div class="container">
-      <h1>マイページ</h1>
-      <i></i>
-      <!-- <ul class="nav nav-tabs">
+  <script>
+    //
+  </script>
+</head>
+
+<body>
+  <!-- Static navbar -->
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="./index.html">CouponMarker</a>
+      </div>
+      <div id="navbar" class="navbar-collapse collapse">
+        <ul class="nav navbar-nav navbar-right">
+          <li><a id="logout">ログアウト</a></li>
+        </ul>
+      </div>
+      <!--/.nav-collapse -->
+    </div>
+    <!--/.container-fluid -->
+  </nav>
+  <!-- Static navbar -->
+  <div class="container">
+    <h1>マイページ</h1>
+    <i></i>
+    <!-- <ul class="nav nav-tabs">
       <li class="active"><a class="" href="#map1" data-toggle="tab" >マップ1</a></li>
       <li><a class="" href="#map2"  data-toggle="tab">マップ2</a></li>
       <li><a class="" href="#map3"  data-toggle="tab">マップ3</a></li>
       <li><a class="" href="#coupons"  data-toggle="tab">クーポン管理画面</a></li>
       <li><a class="" href="#setting"  data-toggle="tab">ユーザー管理</a></li>
       </ul> -->
-      <div class="col-md-3">
-	<ul class="list-unstyled">
-          <li style="margin: 2px 0;"><a class="btn btn-default" href="#map1" data-toggle="tab">マップ1</a></li>
-          <li style="margin: 2px 0;"><a class="btn btn-default" href="#map2" data-toggle="tab">マップ2</a></li>
-          <li style="margin: 2px 0;"><a class="btn btn-default" href="#map3" data-toggle="tab">マップ3</a></li>
-          <li style="margin: 2px 0;"><a class="btn btn-default" href="#shops" data-toggle="tab">ショップ管理画面</a></li>
-          <li style="margin: 2px 0;"><a class="btn btn-default" href="#coupons" data-toggle="tab">クーポン管理画面</a></li>
-          <li style="margin: 2px 0;"><a class="btn btn-default" href="#setting" data-toggle="tab">ユーザー管理</a></li>
-          <li style="margin: 2px 0;">
-            <button class="btn btn-warning" id="logout" data-toggle="tab">ログアウト</a>
-          </li>
-	</Ul>
-      </Div>
-      <Div class="tab-content">
-	<div class="tab-pane" id="map1">
-          <h2>マップ1</h2>
-          <ul class="">
-            <li>他店舗クーポンを確認できる。</li>
-          </ul>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6103.070681767782!2d139.7012425649913!3d35.69011616924207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cd0d6b1ba1f%3A0x1c32a1f1ecacfdd5!2sOdakyu+Shinjuku+Station!5e0!3m2!1sen!2sjp!4v1448508898620"
-		  width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-	</div>
-	<div class="tab-pane" id="map2">
-          <h2>マップ2</h2>
-          <ul class="">
-            <li>クーポンの設置位置登録時に使う画面</li>
-          </ul>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6103.070681767782!2d139.7012425649913!3d35.69011616924207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cd0d6b1ba1f%3A0x1c32a1f1ecacfdd5!2sOdakyu+Shinjuku+Station!5e0!3m2!1sen!2sjp!4v1448508898620"
-		  width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-	</div>
-	<div class="tab-pane" id="map3">
-          <h2>マップ3</h2>
-          <ul class="">
-            <li>クーポン詳細編集</li>
-            <li>クーポン管理画面でクーポンをダブルクリック等でクーポンの設置位置表示</li>
-          </ul>
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6103.070681767782!2d139.7012425649913!3d35.69011616924207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cd0d6b1ba1f%3A0x1c32a1f1ecacfdd5!2sOdakyu+Shinjuku+Station!5e0!3m2!1sen!2sjp!4v1448508898620"
-		  width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-	</div>
-	
-	<div class="tab-pane active" id="shops">
-          <h2>ショップ管理画面</h2>
-	  <!-- <ul class="">
+    <div class="col-md-3">
+      <ul class="list-unstyled">
+        <li style="margin: 2px 0;"><a class="btn btn-default" href="#map1" data-toggle="tab">マップ1</a></li>
+        <li style="margin: 2px 0;"><a class="btn btn-default" href="#map2" data-toggle="tab">マップ2</a></li>
+        <li style="margin: 2px 0;"><a class="btn btn-default" href="#map3" data-toggle="tab">マップ3</a></li>
+        <li style="margin: 2px 0;"><a class="btn btn-default" href="#shops" data-toggle="tab">ショップ管理画面</a></li>
+        <li style="margin: 2px 0;"><a class="btn btn-default" href="#coupons" data-toggle="tab">クーポン管理画面</a></li>
+        <li style="margin: 2px 0;"><a class="btn btn-default" href="#setting" data-toggle="tab">ユーザー管理</a></li>
+        <li style="margin: 2px 0;">
+          <button class="btn btn-warning" id="logout" data-toggle="tab">ログアウト</a>
+        </li>
+      </Ul>
+    </Div>
+    <Div class="tab-content">
+      <div class="tab-pane" id="map1">
+        <h2>マップ1</h2>
+        <ul class="">
+          <li>他店舗クーポンを確認できる。</li>
+        </ul>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6103.070681767782!2d139.7012425649913!3d35.69011616924207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cd0d6b1ba1f%3A0x1c32a1f1ecacfdd5!2sOdakyu+Shinjuku+Station!5e0!3m2!1sen!2sjp!4v1448508898620"
+        width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+      <div class="tab-pane" id="map2">
+        <h2>マップ2</h2>
+        <ul class="">
+          <li>クーポンの設置位置登録時に使う画面</li>
+        </ul>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6103.070681767782!2d139.7012425649913!3d35.69011616924207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cd0d6b1ba1f%3A0x1c32a1f1ecacfdd5!2sOdakyu+Shinjuku+Station!5e0!3m2!1sen!2sjp!4v1448508898620"
+        width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+      <div class="tab-pane" id="map3">
+        <h2>マップ3</h2>
+        <ul class="">
+          <li>クーポン詳細編集</li>
+          <li>クーポン管理画面でクーポンをダブルクリック等でクーポンの設置位置表示</li>
+        </ul>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d6103.070681767782!2d139.7012425649913!3d35.69011616924207!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x60188cd0d6b1ba1f%3A0x1c32a1f1ecacfdd5!2sOdakyu+Shinjuku+Station!5e0!3m2!1sen!2sjp!4v1448508898620"
+        width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+      </div>
+
+      <div class="tab-pane active" id="shops">
+        <h2>ショップ管理画面</h2>
+        <!-- <ul class="">
           <li>登録されているクーポン一覧が出てくる。</li>
           <li>追加、情報編集、削除ができる。</li>
           <li>また、ビューボタンの結果も見ることができる</li>
           </ul> -->
 
-	  <div>
-	    <!-- todo: フォームの見え方を変える -->
-	    <form action="" class="form-inline">
-	      <!-- <div class="form-group">
+        <div>
+          <!-- todo: フォームの見え方を変える -->
+          <form action="" class="form-inline">
+            <!-- <div class="form-group">
 	      <label for="shop_name" class="" >店舗名</label>
 	      <input id="shop_name" class="form-control" name="" type="text" value="" placeholder="店舗名"/>
 	      </div>
 	      <br/> -->
 
-	      <div class="form-group">
-		<label for="shop_msg" class="" >メッセージ(任意)</label>
-		<input id="shop_msg" class="form-control" name="" type="text" value="" placeholder="message"/>
-	      </div>
-	      <br/>
-	      
-	      <!-- <div class="form-group">
+            <div class="form-group">
+              <label for="shop_msg" class="">メッセージ(任意)</label>
+              <input id="shop_msg" class="form-control" name="" type="text" value="" placeholder="message" />
+            </div>
+            <br/>
+
+            <!-- <div class="form-group">
 	      <label for="shop_addr">店舗住所(未実装)</label>
 	      <input id="shop_addr" class="form-control" name="" type="text" value="東京都新宿区西新宿１丁目１−３" placeholder="東京都新宿区西新宿１丁目１−３"/>
 	      </label>
 	      </div> -->
-	      <br/>
+            <br/>
 
-	      <button id="addshop" type="submit" class="btn btn-primary">店舗追加</button>
-	    </form>
-	  </div>
-	  
-	</div>
-	
-	<div class="tab-pane" id="coupons">
-          <h2>クーポン管理画面</h2>
-          <ul class="">
-            <li>登録されているクーポン一覧が出てくる。</li>
-            <li>追加、情報編集、削除ができる。</li>
-            <li>また、ビューボタンの結果も見ることができる</li>
-          </ul>
-	</div>
-	
-	<div class="tab-pane" id="setting">
-          <h2>ユーザー管理</h2>
-          <ul>
-            <li>ユーザ情報を編集出来たりする</li>
-          </ul>
-	</div>
+            <button id="addshop" type="submit" class="btn btn-primary">店舗追加</button>
+          </form>
+        </div>
+
+      </div>
+
+      <div class="tab-pane" id="coupons">
+        <h2>クーポン管理画面</h2>
+        <ul class="">
+          <li>登録されているクーポン一覧が出てくる。</li>
+          <li>追加、情報編集、削除ができる。</li>
+          <li>また、ビューボタンの結果も見ることができる</li>
+        </ul>
+      </div>
+
+      <div class="tab-pane" id="setting">
+        <h2>ユーザー管理</h2>
+        <ul>
+          <li>ユーザ情報を編集出来たりする</li>
+        </ul>
       </div>
     </div>
-    </div>
-    <!-- .container -->
-    <script>
-     $(function() {
-     });
-    </script>
+  </div>
+  </div>
+  <!-- .container -->
+  <script>
+    $(function() {});
+  </script>
 
 
-  </body>
+</body>
 
 </html>
