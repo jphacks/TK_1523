@@ -39,12 +39,17 @@ app.get('/test', function(req, res){
 
 app.post('/upload', upload.single('avatar'), function (req, res, next) {
 
-    //console.log(req.body);
+    console.log(req.body);
     
     var Coupon = ncmb.DataStore("coupon");
     var coupon = new Coupon();
+
     
+    var geo = new ncmb.GeoPoint(parseFloat(req.body.geoLat), parseFloat(req.body.geoLon));
+    console.log(geo);
+
     coupon.set("message", req.body.message)
+	.set("geoPoint", geo)
 	.set("userObjectId", req.body.userObjectId)
 	.set("imageName", req.file.filename)
 	.save()
@@ -54,6 +59,7 @@ app.post('/upload', upload.single('avatar'), function (req, res, next) {
 	})
 	.catch(function(err){
 	    // エラー処理
+	    console.log(err);
 	    fs.unlink(req.file.path);
 	    res.send("failed.");
 	});
