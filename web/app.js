@@ -25,17 +25,34 @@ var upload = multer({ storage: storage });
 
 
 app.post('/upload', upload.single('avatar'), function (req, res, next) {
-    console.log(req.body);
+    console.log(req.body.message);
     console.log(req.file.path);
+
+    fs.unlink(req.file.path);
+
+    res.send("aaa").end();
+    return;
 
     ncmb.File.upload(req.file.filename, req.file.path)
         .then(function(data){
-	    // アップロード後処理
-	    fs.unlink(req.file.path);
-	    res.send("hoge");
+
+	    var Coupon = ncmb.DataStore("coupon");
+	    var coupon = new Coupon();
+
+	    coupon.set("message", req.body.message)
+	        .set("imageName", req.file.filename)
+	        .save()
+	        .then(function(gameScore){
+	    
+		    fs.unlink(req.file.path);
+		    res.send("success");
+		})
+	        .catch(function(err){
+		    // エラー処理
+		    res.send("failed.");
+		});
 	})
         .catch(function(err){
-	    // エラー処理
 	    fs.unlink(req.file.path);
 	    res.send("failed");
 	});

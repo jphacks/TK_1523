@@ -107,27 +107,20 @@
 
         <div>
           <!-- todo: フォームの見え方を変える -->
-          <form action="" class="form-inline">
-            <!-- <div class="form-group">
-	      <label for="shop_name" class="" >店舗名</label>
-	      <input id="shop_name" class="form-control" name="" type="text" value="" placeholder="店舗名"/>
-	      </div>
-	      <br/> -->
-
+          <form id="shop_form" action="./upload" enctype="multipart/form-data" class="form-inline">
             <div class="form-group">
               <label for="shop_msg" class="">メッセージ(任意)</label>
-              <input id="shop_msg" class="form-control" name="" type="text" value="" placeholder="message" />
+              <input id="shop_msg" class="form-control" name="message" type="text" value="" placeholder="message" />
+            </div>
+            <br/>
+	    
+            <div class="form-group">
+              <label for="shop_img" class="">クーポン画像登録</label>
+	      <input id="shop_img" name="avatar" size="27" type="file" accept="image/*;capture=camera"/>
             </div>
             <br/>
 
-            <!-- <div class="form-group">
-	      <label for="shop_addr">店舗住所(未実装)</label>
-	      <input id="shop_addr" class="form-control" name="" type="text" value="東京都新宿区西新宿１丁目１−３" placeholder="東京都新宿区西新宿１丁目１−３"/>
-	      </label>
-	      </div> -->
-            <br/>
-
-            <button id="addshop" type="submit" class="btn btn-primary">店舗追加</button>
+            <button id="addshop" type="submit" class="btn btn-primary">クーポン追加</button>
           </form>
         </div>
 
@@ -140,6 +133,7 @@
           <li>追加、情報編集、削除ができる。</li>
           <li>また、ビューボタンの結果も見ることができる</li>
         </ul>
+
       </div>
 
       <div class="tab-pane" id="setting">
