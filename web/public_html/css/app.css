@@ -1,0 +1,19 @@
+body {
+  background-color: #ffffff;
+  color: #000000;
+}
+
+.jumbotron {
+	background-image: url("../image/index.jpg");
+	background-size: cover;
+	background-position: center;
+	color: white;
+}
+
+.jumbotron > h1, .jumbotron > p {
+  opacity:0.85;
+	text-shadow:	2px  2px 5px black,
+            		-2px  2px 5px black,
+             		2px -2px 5px black,
+            		-2px -2px 5px black;
+}
