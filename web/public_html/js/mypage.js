@@ -22,7 +22,7 @@ $(document).ready(function(){
 
     // ショップ追加処理
     // XXX:submitに変更
-    $("form").submit(function(e){
+    $("form#shop_form").submit(function(e){
         e.preventDefault();
 	$("#addshop").prop('disabled', true);
 
