@@ -48,96 +48,14 @@
     </nav>
     
     <div class="container">
-      <div class="row">
-	
-	<div class="col-md-3 col-sm-6 col-xs-12">
-	  <table class="table table-bordered">
-	    <tr>
-	      <td style="text-align:center;"><img alt="" src="http://placehold.jp/150x150.png"/></td>
-	    </tr>
-	    <tr>
-	      <td>message</td>
-	    </tr>
-	  </table>
-	</div>
-	
-	<div class="col-md-3 col-sm-6 col-xs-12">
-	  <table class="table table-bordered">
-	    <tr>
-	      <td style="text-align:center;"><img alt="" src="http://placehold.jp/150x150.png"/></td>
-	    </tr>
-	    <tr>
-	      <td>message</td>
-	    </tr>
-	  </table>
-	</div>
-	
-	<div class="col-md-3 col-sm-6 col-xs-12">
-	  <table class="table table-bordered">
-	    <tr>
-	      <td style="text-align:center;"><img alt="" src="http://placehold.jp/150x150.png"/></td>
-	    </tr>
-	    <tr>
-	      <td>message</td>
-	    </tr>
-	  </table>
-	</div>
-	
-	<div class="col-md-3 col-sm-6 col-xs-12">
-	  <table class="table table-bordered">
-	    <tr>
-	      <td style="text-align:center;"><img alt="" src="http://placehold.jp/150x150.png"/></td>
-	    </tr>
-	    <tr>
-	      <td>message</td>
-	    </tr>
-	  </table>
-	</div>
-	
-	<div class="col-md-3 col-sm-6 col-xs-12">
-	  <table class="table table-bordered">
-	    <tr>
-	      <td style="text-align:center;"><img alt="" src="http://placehold.jp/150x150.png"/></td>
-	    </tr>
-	    <tr>
-	      <td>message</td>
-	    </tr>
-	  </table>
-	</div>
-	
-	<div class="col-md-3 col-sm-6 col-xs-12">
-	  <table class="table table-bordered">
-	    <tr>
-	      <td style="text-align:center;"><img alt="" src="http://placehold.jp/150x150.png"/></td>
-	    </tr>
-	    <tr>
-	      <td>message</td>
-	    </tr>
-	  </table>
-	</div>
-	
-        <form id="shop_form" action="./upload" enctype="multipart/form-data" class="form-inline" method="POST">
-	  <input id="userObjectId" name="userObjectId" type="hidden" value=""/>
-	  <input id="geoLat" name="geoLat" type="hidden" value=""/>
-	  <input id="geoLon" name="geoLon" type="hidden" value=""/>
-	  
-          <div class="form-group">
-            <label for="shop_msg" class="">メッセージ(任意)</label>
-            <input id="shop_msg" class="form-control" name="message" type="text" value="" placeholder="message" />
-          </div>
-	  
-          <div class="form-group">
-            <label for="shop_img" class="">クーポン画像登録</label>
-	    <input id="shop_img" name="avatar" size="27" type="file" accept="image/*;capture=camera"/>
-          </div>
+      <div id="coupons" class="row">
 
-          <button id="addshop" type="submit" class="btn btn-primary">クーポン追加</button>
-        </form>
+	
       </div>
     </div><!-- .container -->
 
     
-    <button class="btn btn-info btn-lg" data-toggle="modal" data-target="#addCoupon">+</button>
+    <button style="position:fixed;border-radius:50px;right:10px;bottom:10px;" class="btn btn-info btn-lg" data-toggle="modal" data-target="#addCoupon">+</button>
 
     <div id="addCoupon" class="modal fade" role="dialog">
       <div class="modal-dialog">
@@ -145,11 +63,47 @@
 	<div class="modal-content">
 	  <div class="modal-header">
 	    <button type="button" class="close" data-dismiss="modal">&times;</button>
-	    <h4 class="modal-title">Modal Header</h4>
+	    <h4 class="modal-title">クーポンを登録する</h4>
 	  </div>
 	  
 	  <div class="modal-body">
-	    <p>Some text in the modal.</p>
+
+            <form id="shop_form" action="./upload" enctype="multipart/form-data" class="form-inline" method="POST">
+	      <input id="userObjectId" name="userObjectId" type="hidden" value=""/>
+	      <input id="geoLat" name="geoLat" type="hidden" value=""/>
+	      <input id="geoLon" name="geoLon" type="hidden" value=""/>
+
+	      <table class="table" style="margin-bottom:0;">
+		<tr>
+		  <th>メッセージ(任意)</th>
+		  <td><input id="shop_msg" class="form-control" name="message" type="text" value="" placeholder="message" /></td>
+		</tr>
+		<tr>
+		  <th>クーポン画像登録</th>
+		  <td><input id="shop_img" name="avatar" size="27" type="file" accept="image/*;capture=camera"/></td>
+		</tr>
+
+		<tr>
+		  <td style="text-align:center;" colspan="2"><button style="margin-top:10px;" id="addshop" type="submit" class="btn btn-primary">クーポン追加</button></td>
+		</tr>
+		
+	      </table>
+	      
+	      <!-- <div class="form-group">
+	      <label for="shop_msg" class="">メッセージ(任意)</label>
+	      <input id="shop_msg" class="form-control" name="message" type="text" value="" placeholder="message" />
+              </div>
+	      <br/>
+	      
+              <div class="form-group">
+	      <label for="shop_img" class="">クーポン画像登録</label>
+	      <input id="shop_img" name="avatar" size="27" type="file" accept="image/*;capture=camera"/>
+              </div>
+	      <br/>
+
+              <button id="addshop" type="submit" class="btn btn-primary">クーポン追加</button> -->
+            </form>
+	    
 	  </div>
 	  
 	  <div class="modal-footer">
