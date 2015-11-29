@@ -17,7 +17,7 @@ $(function() {
 
     codeAddress(currentUser.address, function(lat, lon){
 	$("#userObjectId").val(currentUser.objectId);
-	$("#geoLat").val(lat);o
+	$("#geoLat").val(lat);
 	$("#geoLon").val(lon);
     });
     
